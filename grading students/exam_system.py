@@ -242,7 +242,7 @@ def main():
  system.register_student(Student("1VT21CS002", "Priya Sharma", "CSE"))
  system.register_student(Student("1VT21EC001", "Vikram Nair", "ECE"))
  
- # Create exams
+  # Create exams
  maths_mcq = MCQExam("M101", "Engineering Mathematics", 180,
  question_count=100, marks_per_q=1.0, negative_marks=0.25)
  maths_mcq.set_answer_key({1:"A", 2:"C", 3:"B", 4:"D", 5:"A"})
