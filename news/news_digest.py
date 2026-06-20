@@ -27,6 +27,7 @@ FREE_MODEL = "meta-llama/llama-3.1-8b-instruct:free"
 
 # ─── News Fetching ─────────────────────────────────────────────────────────
 
+
 def fetch_articles(topic: str, count: int = 5) -> list[dict]:
     """Fetch top news articles on a topic from NewsAPI."""
     url = "https://newsapi.org/v2/everything"
@@ -43,7 +44,9 @@ def fetch_articles(topic: str, count: int = 5) -> list[dict]:
     print(f"[OK] Fetched {len(articles)} articles about '{topic}'")
     return articles
 
+
 # ─── AI Summarisation via OpenRouter SDK ───────────────────────────────────
+
 
 def summarise_article(title: str, content: str) -> str:
     """
@@ -89,7 +92,10 @@ def summarise_article(title: str, content: str) -> str:
                 return "[Summary: empty response from model]"
             if isinstance(msg_content, list):
                 # Extract text from content parts
-                parts = [p.get("text", "") if isinstance(p, dict) else str(p) for p in msg_content]
+                parts = [
+                    p.get("text", "") if isinstance(p, dict) else str(p)
+                    for p in msg_content
+                ]
                 return " ".join(parts).strip()
             return str(msg_content).strip()
 
@@ -100,7 +106,9 @@ def summarise_article(title: str, content: str) -> str:
         except Exception as e:
             return f"[Summary unavailable: {e}]"
 
+
 # ─── Digest Generation ─────────────────────────────────────────────────────
+
 
 def build_digest(topic: str, articles: list[dict]) -> str:
     """Build a Markdown-formatted digest from articles."""
@@ -135,7 +143,9 @@ def build_digest(topic: str, articles: list[dict]) -> str:
 
     return "\n".join(lines)
 
+
 # ─── Save Digest ────────────────────────────────────────────────────────────
+
 
 def save_digest(content: str, topic: str) -> Path:
     """Save digest to a Markdown file."""
@@ -145,7 +155,9 @@ def save_digest(content: str, topic: str) -> Path:
     filepath.write_text(content, encoding="utf-8")
     return filepath
 
+
 # ─── CLI Entry Point ────────────────────────────────────────────────────────
+
 
 def main():
     parser = argparse.ArgumentParser(
